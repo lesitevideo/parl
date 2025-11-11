@@ -12,8 +12,8 @@
                     //print_r( $logos );
                     foreach( $logos as $logoID ){
                         
-                        $img_atts = wp_get_attachment_image_src($logoID, 'thumbnail');
-                        echo '<img class="mx-2" src="' . $img_atts[0] . '"/>';
+                        $img_atts = wp_get_attachment_image_src($logoID, 'logos_footer');
+                        echo '<img width="auto" height="75" class="mx-2" src="' . $img_atts[0] . '"/>';
                         //print_r( $img_atts[0] );
                     }
                 }
