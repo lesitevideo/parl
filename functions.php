@@ -32,36 +32,18 @@ function my_login_logo() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
+add_action( 'phpmailer_init', function( $phpmailer ) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host       = SMTP_HOST;
+    $phpmailer->SMTPAuth   = SMTP_AUTH;
+    $phpmailer->Port       = SMTP_PORT;
+    $phpmailer->Username   = SMTP_USER;
+    $phpmailer->Password   = SMTP_PASS;
+    $phpmailer->SMTPSecure = SMTP_SECURE;
+    $phpmailer->From       = SMTP_FROM;
+    $phpmailer->FromName   = SMTP_FROM_NAME;
+});
 
-/* AJAX LOGIN */
-/*
-function shapeSpace_include_custom_jquery() {
-	wp_deregister_script('jquery');
-	wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.7.1.min.js', array(), null, true);
-}
-add_action('wp_enqueue_scripts', 'shapeSpace_include_custom_jquery');
-
-//add this within functions.php
-function ajax_login_init(){
-
-    wp_register_script('ajax-login', get_template_directory_uri() . '/assets/js/ajax-login.js', array('jquery') ); 
-    wp_enqueue_script('ajax-login');
-
-    wp_localize_script( 'ajax-login', 'ajax_login_object', array( 
-        'ajaxurl' => admin_url( 'admin-ajax.php' ),
-        'redirecturl' => home_url(),
-        'loadingmessage' => __('Sending user info, please wait...')
-    ));
-
-    // Enable the user with no privileges to run ajax_login() in AJAX
-    add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
-}
-
-// Execute the action only if the user isn't logged in
-if (!is_user_logged_in()) {
-    add_action('init', 'ajax_login_init');
-}
-*/
 
 add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
 
