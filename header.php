@@ -97,7 +97,7 @@ header("Cache-Control: max-age=0");
             </div>
               <a class="btn btn-primary w-100 py-2" id="bt_submit" name="submit">Connexion</a>
               <p class="mt-2 mb-2 text-body-secondary text-center">
-                  <a href="/mot-de-passe-oublie/">Mot de passe oublié ?</a>
+                  <a href="<?php echo wp_lostpassword_url(); ?>">Mot de passe oublié ?</a>
               </p>
               <p class="mt-3 mb-3 text-body-secondary">
                   Pas encore inscrit ?  <a href="/creer-un-compte/">Cliquez ici pour créer un compte</a>
